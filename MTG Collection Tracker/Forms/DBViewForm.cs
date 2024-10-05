@@ -329,9 +329,9 @@ namespace MTG_Librarian
 
         private void fastObjectListView1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var card = (cardListView.SelectedObject as OLVCardItem)?.MagicCard;
-            if (card != null)
-                OnCardSelected(new CardSelectedEventArgs { MagicCard = card });
+            var cards = cardListView.SelectedObjects;
+            if (cards.Count > 0)
+                OnCardSelected(new CardSelectedEventArgs { MagicCards = cards });
         }
 
         private void fastObjectListView1_ItemActivate(object sender, EventArgs e)

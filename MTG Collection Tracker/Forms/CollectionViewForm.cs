@@ -46,6 +46,8 @@ namespace MTG_Librarian
             cardListView.AllColumns.FirstOrDefault(x => x.AspectName == "PaddedName").Renderer = new CardInstanceNameRenderer();
             cardListView.AllColumns.FirstOrDefault(x => x.AspectName == "ManaCost").Renderer = new ManaCostRenderer();
             cardListView.AllColumns.FirstOrDefault(x => x.AspectName == "Foil").Renderer = new CheckBoxRenderer();
+            cardListView.AllColumns.FirstOrDefault(x => x.AspectName == "Delta").Renderer = new DeltaRenderer();
+            cardListView.AllColumns.FirstOrDefault(y => y.AspectName == "X").Renderer = new XRenderer();
             cardListView.VirtualListDataSource = new MyCustomSortingDataSource(cardListView);
             cardListView.AddDecoration(new EditingCellBorderDecoration { UseLightbox = false, BorderPen = new Pen(Brushes.DodgerBlue, 3), BoundsPadding = new Size(1, 0) });
             cardListView.UseFiltering = true;
@@ -412,8 +414,8 @@ namespace MTG_Librarian
 
         private void fastObjectListView1_SelectionChanged(object sender, EventArgs e)
         {
-            if (cardListView.SelectedObject is MagicCardBase card)
-                OnCardSelected(new CardSelectedEventArgs { MagicCard = card });
+            if (cardListView.SelectedObjects != null && cardListView.SelectedObjects.Count > 0 && cardListView.SelectedObjects[0] is MagicCardBase)
+                OnCardSelected(new CardSelectedEventArgs { MagicCards = cardListView.SelectedObjects });
         }
 
         private void cardListView_SubItemChecking(object sender, SubItemCheckingEventArgs e)
@@ -445,6 +447,15 @@ namespace MTG_Librarian
                     }
                 }
             }
+            if (e.KeyCode == Keys.Enter && e.Shift)
+            {
+                var cardsToPrice = new List<FullInventoryCard>();
+                foreach (var row in cardListView.Objects)
+                    if (row is FullInventoryCard card && card.tcgplayerProductId != 0)
+                        cardsToPrice.Add(row as FullInventoryCard);
+                if (cardsToPrice.Count > 0)
+                    CardManager.FetchPrices(cardsToPrice);
+            }
         }
 
         private void cardListView_CellEditStarting(object sender, CellEditEventArgs e)
@@ -459,6 +470,7 @@ namespace MTG_Librarian
                     {
                         Bounds = e.CellBounds,
                         DecimalPlaces = 2,
+                        Maximum = 9999999,
                         Value = decimal.TryParse(e.Value?.ToString(), out decimal cellValue) ? cellValue : 0.0M
                     };
                     e.Control = editor;
@@ -758,7 +770,10 @@ namespace MTG_Librarian
                             result = CompareText((x as FullInventoryCard).Tags, (y as FullInventoryCard).Tags);
                         else if (AspectName == "text")
                             result = CompareText((x as FullInventoryCard).text, (y as FullInventoryCard).text);
-
+                        else if (AspectName == "Delta")
+                            result = CompareNullableDoubles((x as FullInventoryCard).Delta, (y as FullInventoryCard).Delta);
+                        else if (AspectName == "X")
+                            result = CompareNullableDoubles((x as FullInventoryCard).X, (y as FullInventoryCard).X);
                         return SortOrder == SortOrder.Ascending ? result : -1 * result;
                     }
                 }

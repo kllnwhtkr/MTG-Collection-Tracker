@@ -34,6 +34,7 @@ namespace MTG_Librarian
     public class CardSelectedEventArgs : EventArgs
     {
         public MagicCardBase MagicCard { get; set; }
+        public IList MagicCards { get; set; }
     }
 
     public class CardsActivatedEventArgs : EventArgs

@@ -16,10 +16,26 @@ namespace MTG_Librarian
 
         public static void CardSelected(object sender, CardSelectedEventArgs e)
         {
-            var card = e.MagicCard;
-            Globals.Forms.CardInfoForm.CardSelected(card);
-            CardFocused(sender, new CardFocusedEventArgs { uuid = card.uuid });
-            CardManager.RetrieveImage(card);
+            if (e.MagicCards.Count == 1)
+            {
+                MagicCardBase card = null;
+                if (e.MagicCards[0] is FullInventoryCard)
+                    card = e.MagicCards[0] as MagicCardBase;
+                else if (e.MagicCards[0] is OLVCardItem cardItem)
+                    card = cardItem.MagicCard;
+                Globals.Forms.CardInfoForm.CardSelected(card);
+                CardFocused(sender, new CardFocusedEventArgs { uuid = card.uuid });
+                CardManager.RetrieveImage(card);
+                if (card is FullInventoryCard)
+                    Globals.Forms.MainForm.UpdateStatusBarTotals(e.MagicCards);
+            }
+            else if (e.MagicCards.Count > 1)
+            {
+                if (e.MagicCards[0] is FullInventoryCard)
+                {
+                    Globals.Forms.MainForm.UpdateStatusBarTotals(e.MagicCards);
+                }
+            }
         }
 
         public static void ImageDownloadCompleted(object sender, RunWorkerCompletedEventArgs e)

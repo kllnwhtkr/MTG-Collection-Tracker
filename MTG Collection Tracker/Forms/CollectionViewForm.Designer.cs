@@ -41,6 +41,9 @@
             this.CountColumn = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.CostColumn = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.tcgplayerMarketPriceColumn = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.tcgPlayerMidPriceColumn = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.DeltaColumn = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.XColumn = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.cardTextColumn = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.TagsColumn = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.SortableTimeAdded = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
@@ -65,6 +68,7 @@
             this.blackManaButton = new CustomControls.FlatButton();
             this.colorlessManaButton = new CustomControls.FlatButton();
             this.genericManaButton = new CustomControls.FlatButton();
+            this.rarityColumn = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             ((System.ComponentModel.ISupportInitialize)(this.cardListView)).BeginInit();
             this.cardListViewMenuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -77,6 +81,7 @@
             // cardListView
             // 
             this.cardListView.AllColumns.Add(this.CardName);
+            this.cardListView.AllColumns.Add(this.rarityColumn);
             this.cardListView.AllColumns.Add(this.FoilColumn);
             this.cardListView.AllColumns.Add(this.ConditionColumn);
             this.cardListView.AllColumns.Add(this.olvColumn10);
@@ -87,6 +92,9 @@
             this.cardListView.AllColumns.Add(this.CountColumn);
             this.cardListView.AllColumns.Add(this.CostColumn);
             this.cardListView.AllColumns.Add(this.tcgplayerMarketPriceColumn);
+            this.cardListView.AllColumns.Add(this.tcgPlayerMidPriceColumn);
+            this.cardListView.AllColumns.Add(this.DeltaColumn);
+            this.cardListView.AllColumns.Add(this.XColumn);
             this.cardListView.AllColumns.Add(this.cardTextColumn);
             this.cardListView.AllColumns.Add(this.TagsColumn);
             this.cardListView.AllColumns.Add(this.SortableTimeAdded);
@@ -97,6 +105,7 @@
             this.cardListView.CellEditUseWholeCell = false;
             this.cardListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.CardName,
+            this.rarityColumn,
             this.FoilColumn,
             this.ConditionColumn,
             this.olvColumn2,
@@ -106,6 +115,8 @@
             this.CountColumn,
             this.CostColumn,
             this.tcgplayerMarketPriceColumn,
+            this.DeltaColumn,
+            this.XColumn,
             this.cardTextColumn,
             this.TagsColumn,
             this.TimeAddedColumn});
@@ -119,11 +130,12 @@
             this.cardListView.IsSimpleDragSource = true;
             this.cardListView.IsSimpleDropSink = true;
             this.cardListView.Location = new System.Drawing.Point(0, 0);
+            this.cardListView.Margin = new System.Windows.Forms.Padding(4);
             this.cardListView.Name = "cardListView";
             this.cardListView.SelectedBackColor = System.Drawing.Color.SteelBlue;
             this.cardListView.SelectedForeColor = System.Drawing.Color.White;
             this.cardListView.ShowGroups = false;
-            this.cardListView.Size = new System.Drawing.Size(1410, 401);
+            this.cardListView.Size = new System.Drawing.Size(1880, 500);
             this.cardListView.TabIndex = 0;
             this.cardListView.UnfocusedSelectedBackColor = System.Drawing.Color.LightGray;
             this.cardListView.UseCellFormatEvents = true;
@@ -232,6 +244,32 @@
             this.tcgplayerMarketPriceColumn.Text = "TCGP Market Price";
             this.tcgplayerMarketPriceColumn.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
+            // tcgPlayerMidPriceColumn
+            // 
+            this.tcgPlayerMidPriceColumn.AspectName = "tcgPlayerMidPrice";
+            this.tcgPlayerMidPriceColumn.AspectToStringFormat = "{0:0.00}";
+            this.tcgPlayerMidPriceColumn.DisplayIndex = 10;
+            this.tcgPlayerMidPriceColumn.IsEditable = false;
+            this.tcgPlayerMidPriceColumn.IsVisible = false;
+            this.tcgPlayerMidPriceColumn.Text = "TCGP Mid Price";
+            this.tcgPlayerMidPriceColumn.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // DeltaColumn
+            // 
+            this.DeltaColumn.AspectName = "Delta";
+            this.DeltaColumn.AspectToStringFormat = "{0:0.00}";
+            this.DeltaColumn.IsEditable = false;
+            this.DeltaColumn.Text = "Δ";
+            this.DeltaColumn.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // XColumn
+            // 
+            this.XColumn.AspectName = "X";
+            this.XColumn.AspectToStringFormat = "{0:0.00}";
+            this.XColumn.IsEditable = false;
+            this.XColumn.Text = "X";
+            this.XColumn.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
             // cardTextColumn
             // 
             this.cardTextColumn.AspectName = "text";
@@ -274,32 +312,33 @@
             // 
             // cardListViewMenuStrip
             // 
+            this.cardListViewMenuStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.cardListViewMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.deleteCardsToolStripMenuItem,
             this.splitToolStripMenuItem,
             this.combineToolStripMenuItem});
             this.cardListViewMenuStrip.Name = "cardListViewMenuStrip";
-            this.cardListViewMenuStrip.Size = new System.Drawing.Size(147, 70);
+            this.cardListViewMenuStrip.Size = new System.Drawing.Size(172, 76);
             this.cardListViewMenuStrip.Opening += new System.ComponentModel.CancelEventHandler(this.cardListViewMenuStrip_Opening);
             // 
             // deleteCardsToolStripMenuItem
             // 
             this.deleteCardsToolStripMenuItem.Name = "deleteCardsToolStripMenuItem";
-            this.deleteCardsToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.deleteCardsToolStripMenuItem.Size = new System.Drawing.Size(171, 24);
             this.deleteCardsToolStripMenuItem.Text = "Delete card(s)";
             this.deleteCardsToolStripMenuItem.Click += new System.EventHandler(this.deleteCardsToolStripMenuItem_Click);
             // 
             // splitToolStripMenuItem
             // 
             this.splitToolStripMenuItem.Name = "splitToolStripMenuItem";
-            this.splitToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.splitToolStripMenuItem.Size = new System.Drawing.Size(171, 24);
             this.splitToolStripMenuItem.Text = "Split";
             this.splitToolStripMenuItem.Click += new System.EventHandler(this.splitToolStripMenuItem_Click);
             // 
             // combineToolStripMenuItem
             // 
             this.combineToolStripMenuItem.Name = "combineToolStripMenuItem";
-            this.combineToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.combineToolStripMenuItem.Size = new System.Drawing.Size(171, 24);
             this.combineToolStripMenuItem.Text = "Combine";
             this.combineToolStripMenuItem.Click += new System.EventHandler(this.combineToolStripMenuItem_Click);
             // 
@@ -307,10 +346,11 @@
             // 
             this.cardNameFilterTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic);
             this.cardNameFilterTextBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.cardNameFilterTextBox.Location = new System.Drawing.Point(3, 8);
+            this.cardNameFilterTextBox.Location = new System.Drawing.Point(4, 10);
+            this.cardNameFilterTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.cardNameFilterTextBox.Name = "cardNameFilterTextBox";
             this.cardNameFilterTextBox.Placeholder = "Card Name Filter";
-            this.cardNameFilterTextBox.Size = new System.Drawing.Size(189, 20);
+            this.cardNameFilterTextBox.Size = new System.Drawing.Size(251, 23);
             this.cardNameFilterTextBox.TabIndex = 1;
             this.cardNameFilterTextBox.Text = "Card Name Filter";
             this.cardNameFilterTextBox.TextChanged += new System.EventHandler(this.cardNameFilterTextBox_TextChanged);
@@ -321,6 +361,7 @@
             this.splitContainer1.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
             this.splitContainer1.IsSplitterFixed = true;
             this.splitContainer1.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer1.Margin = new System.Windows.Forms.Padding(4);
             this.splitContainer1.Name = "splitContainer1";
             this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -337,18 +378,20 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.cardListView);
-            this.splitContainer1.Size = new System.Drawing.Size(1410, 435);
+            this.splitContainer1.Size = new System.Drawing.Size(1880, 535);
             this.splitContainer1.SplitterDistance = 30;
+            this.splitContainer1.SplitterWidth = 5;
             this.splitContainer1.TabIndex = 2;
             // 
             // commentsFilterTextBox
             // 
             this.commentsFilterTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic);
             this.commentsFilterTextBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.commentsFilterTextBox.Location = new System.Drawing.Point(978, 8);
+            this.commentsFilterTextBox.Location = new System.Drawing.Point(1304, 10);
+            this.commentsFilterTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.commentsFilterTextBox.Name = "commentsFilterTextBox";
             this.commentsFilterTextBox.Placeholder = "Comments Filter";
-            this.commentsFilterTextBox.Size = new System.Drawing.Size(193, 20);
+            this.commentsFilterTextBox.Size = new System.Drawing.Size(256, 23);
             this.commentsFilterTextBox.TabIndex = 19;
             this.commentsFilterTextBox.Text = "Comments Filter";
             this.commentsFilterTextBox.TextChanged += new System.EventHandler(this.cardNameFilterTextBox_TextChanged);
@@ -357,10 +400,11 @@
             // 
             this.cardTextFilterTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic);
             this.cardTextFilterTextBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.cardTextFilterTextBox.Location = new System.Drawing.Point(810, 8);
+            this.cardTextFilterTextBox.Location = new System.Drawing.Point(1080, 10);
+            this.cardTextFilterTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.cardTextFilterTextBox.Name = "cardTextFilterTextBox";
             this.cardTextFilterTextBox.Placeholder = "Card Text Filter";
-            this.cardTextFilterTextBox.Size = new System.Drawing.Size(162, 20);
+            this.cardTextFilterTextBox.Size = new System.Drawing.Size(215, 23);
             this.cardTextFilterTextBox.TabIndex = 18;
             this.cardTextFilterTextBox.Text = "Card Text Filter";
             this.cardTextFilterTextBox.TextChanged += new System.EventHandler(this.cardNameFilterTextBox_TextChanged);
@@ -369,10 +413,11 @@
             // 
             this.typeFilterTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic);
             this.typeFilterTextBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.typeFilterTextBox.Location = new System.Drawing.Point(511, 8);
+            this.typeFilterTextBox.Location = new System.Drawing.Point(681, 10);
+            this.typeFilterTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.typeFilterTextBox.Name = "typeFilterTextBox";
             this.typeFilterTextBox.Placeholder = "Type Filter";
-            this.typeFilterTextBox.Size = new System.Drawing.Size(132, 20);
+            this.typeFilterTextBox.Size = new System.Drawing.Size(175, 23);
             this.typeFilterTextBox.TabIndex = 17;
             this.typeFilterTextBox.Text = "Type Filter";
             this.typeFilterTextBox.TextChanged += new System.EventHandler(this.cardNameFilterTextBox_TextChanged);
@@ -388,9 +433,10 @@
             "Uncommon",
             "Rare",
             "Mythic"});
-            this.rarityFilterComboBox.Location = new System.Drawing.Point(198, 8);
+            this.rarityFilterComboBox.Location = new System.Drawing.Point(264, 10);
+            this.rarityFilterComboBox.Margin = new System.Windows.Forms.Padding(4);
             this.rarityFilterComboBox.Name = "rarityFilterComboBox";
-            this.rarityFilterComboBox.Size = new System.Drawing.Size(121, 21);
+            this.rarityFilterComboBox.Size = new System.Drawing.Size(160, 24);
             this.rarityFilterComboBox.TabIndex = 16;
             this.rarityFilterComboBox.SelectedIndexChanged += new System.EventHandler(this.rarityFilterComboBox_SelectedIndexChanged);
             // 
@@ -398,10 +444,11 @@
             // 
             this.setFilterTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic);
             this.setFilterTextBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.setFilterTextBox.Location = new System.Drawing.Point(649, 8);
+            this.setFilterTextBox.Location = new System.Drawing.Point(865, 10);
+            this.setFilterTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.setFilterTextBox.Name = "setFilterTextBox";
             this.setFilterTextBox.Placeholder = "Set Filter";
-            this.setFilterTextBox.Size = new System.Drawing.Size(155, 20);
+            this.setFilterTextBox.Size = new System.Drawing.Size(205, 23);
             this.setFilterTextBox.TabIndex = 2;
             this.setFilterTextBox.Text = "Set Filter";
             this.setFilterTextBox.TextChanged += new System.EventHandler(this.cardNameFilterTextBox_TextChanged);
@@ -415,9 +462,10 @@
             this.manaButtonsPanel.Controls.Add(this.blackManaButton);
             this.manaButtonsPanel.Controls.Add(this.colorlessManaButton);
             this.manaButtonsPanel.Controls.Add(this.genericManaButton);
-            this.manaButtonsPanel.Location = new System.Drawing.Point(320, 5);
+            this.manaButtonsPanel.Location = new System.Drawing.Point(427, 6);
+            this.manaButtonsPanel.Margin = new System.Windows.Forms.Padding(4);
             this.manaButtonsPanel.Name = "manaButtonsPanel";
-            this.manaButtonsPanel.Size = new System.Drawing.Size(190, 27);
+            this.manaButtonsPanel.Size = new System.Drawing.Size(253, 33);
             this.manaButtonsPanel.TabIndex = 20;
             // 
             // whiteManaButton
@@ -427,9 +475,10 @@
             this.whiteManaButton.FlatAppearance.BorderSize = 0;
             this.whiteManaButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.whiteManaButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.whiteManaButton.Location = new System.Drawing.Point(3, 0);
+            this.whiteManaButton.Location = new System.Drawing.Point(4, 0);
+            this.whiteManaButton.Margin = new System.Windows.Forms.Padding(4);
             this.whiteManaButton.Name = "whiteManaButton";
-            this.whiteManaButton.Size = new System.Drawing.Size(25, 25);
+            this.whiteManaButton.Size = new System.Drawing.Size(33, 31);
             this.whiteManaButton.TabIndex = 8;
             this.whiteManaButton.UseVisualStyleBackColor = false;
             this.whiteManaButton.Click += new System.EventHandler(this.whiteManaButton_Click);
@@ -440,9 +489,10 @@
             this.blueManaButton.FlatAppearance.BorderColor = System.Drawing.SystemColors.Control;
             this.blueManaButton.FlatAppearance.BorderSize = 2;
             this.blueManaButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.blueManaButton.Location = new System.Drawing.Point(29, 0);
+            this.blueManaButton.Location = new System.Drawing.Point(39, 0);
+            this.blueManaButton.Margin = new System.Windows.Forms.Padding(4);
             this.blueManaButton.Name = "blueManaButton";
-            this.blueManaButton.Size = new System.Drawing.Size(25, 25);
+            this.blueManaButton.Size = new System.Drawing.Size(33, 31);
             this.blueManaButton.TabIndex = 9;
             this.blueManaButton.UseVisualStyleBackColor = false;
             this.blueManaButton.Click += new System.EventHandler(this.whiteManaButton_Click);
@@ -453,9 +503,10 @@
             this.redManaButton.FlatAppearance.BorderColor = System.Drawing.SystemColors.Control;
             this.redManaButton.FlatAppearance.BorderSize = 2;
             this.redManaButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.redManaButton.Location = new System.Drawing.Point(81, 0);
+            this.redManaButton.Location = new System.Drawing.Point(108, 0);
+            this.redManaButton.Margin = new System.Windows.Forms.Padding(4);
             this.redManaButton.Name = "redManaButton";
-            this.redManaButton.Size = new System.Drawing.Size(25, 25);
+            this.redManaButton.Size = new System.Drawing.Size(33, 31);
             this.redManaButton.TabIndex = 11;
             this.redManaButton.Text = "R";
             this.redManaButton.UseVisualStyleBackColor = false;
@@ -467,9 +518,10 @@
             this.greenManaButton.FlatAppearance.BorderColor = System.Drawing.SystemColors.Control;
             this.greenManaButton.FlatAppearance.BorderSize = 2;
             this.greenManaButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.greenManaButton.Location = new System.Drawing.Point(107, 0);
+            this.greenManaButton.Location = new System.Drawing.Point(143, 0);
+            this.greenManaButton.Margin = new System.Windows.Forms.Padding(4);
             this.greenManaButton.Name = "greenManaButton";
-            this.greenManaButton.Size = new System.Drawing.Size(25, 25);
+            this.greenManaButton.Size = new System.Drawing.Size(33, 31);
             this.greenManaButton.TabIndex = 12;
             this.greenManaButton.Text = "G";
             this.greenManaButton.UseVisualStyleBackColor = false;
@@ -481,9 +533,10 @@
             this.blackManaButton.FlatAppearance.BorderColor = System.Drawing.SystemColors.Control;
             this.blackManaButton.FlatAppearance.BorderSize = 2;
             this.blackManaButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.blackManaButton.Location = new System.Drawing.Point(55, 0);
+            this.blackManaButton.Location = new System.Drawing.Point(73, 0);
+            this.blackManaButton.Margin = new System.Windows.Forms.Padding(4);
             this.blackManaButton.Name = "blackManaButton";
-            this.blackManaButton.Size = new System.Drawing.Size(25, 25);
+            this.blackManaButton.Size = new System.Drawing.Size(33, 31);
             this.blackManaButton.TabIndex = 10;
             this.blackManaButton.Text = "B";
             this.blackManaButton.UseVisualStyleBackColor = false;
@@ -495,9 +548,10 @@
             this.colorlessManaButton.FlatAppearance.BorderColor = System.Drawing.SystemColors.Control;
             this.colorlessManaButton.FlatAppearance.BorderSize = 0;
             this.colorlessManaButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.colorlessManaButton.Location = new System.Drawing.Point(133, 0);
+            this.colorlessManaButton.Location = new System.Drawing.Point(177, 0);
+            this.colorlessManaButton.Margin = new System.Windows.Forms.Padding(4);
             this.colorlessManaButton.Name = "colorlessManaButton";
-            this.colorlessManaButton.Size = new System.Drawing.Size(25, 25);
+            this.colorlessManaButton.Size = new System.Drawing.Size(33, 31);
             this.colorlessManaButton.TabIndex = 13;
             this.colorlessManaButton.Text = "flatButton1";
             this.colorlessManaButton.UseVisualStyleBackColor = false;
@@ -509,21 +563,28 @@
             this.genericManaButton.FlatAppearance.BorderColor = System.Drawing.SystemColors.Control;
             this.genericManaButton.FlatAppearance.BorderSize = 0;
             this.genericManaButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.genericManaButton.Location = new System.Drawing.Point(159, 0);
+            this.genericManaButton.Location = new System.Drawing.Point(212, 0);
+            this.genericManaButton.Margin = new System.Windows.Forms.Padding(4);
             this.genericManaButton.Name = "genericManaButton";
-            this.genericManaButton.Size = new System.Drawing.Size(25, 25);
+            this.genericManaButton.Size = new System.Drawing.Size(33, 31);
             this.genericManaButton.TabIndex = 14;
             this.genericManaButton.Text = "flatButton1";
             this.genericManaButton.UseVisualStyleBackColor = false;
             this.genericManaButton.Click += new System.EventHandler(this.whiteManaButton_Click);
             // 
+            // rarityColumn
+            // 
+            this.rarityColumn.AspectName = "rarity";
+            this.rarityColumn.Text = "Rarity";
+            // 
             // CollectionViewForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1410, 435);
+            this.ClientSize = new System.Drawing.Size(1880, 535);
             this.Controls.Add(this.splitContainer1);
             this.DoubleBuffered = true;
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "CollectionViewForm";
             this.Text = "Collection View";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.CollectionViewForm_FormClosed);
@@ -576,5 +637,9 @@
         private System.Windows.Forms.ToolStripMenuItem splitToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem combineToolStripMenuItem;
         private BrightIdeasSoftware.OLVColumn ConditionColumn;
+        private BrightIdeasSoftware.OLVColumn DeltaColumn;
+        private BrightIdeasSoftware.OLVColumn XColumn;
+        private BrightIdeasSoftware.OLVColumn tcgPlayerMidPriceColumn;
+        private BrightIdeasSoftware.OLVColumn rarityColumn;
     }
 }
