@@ -4,6 +4,8 @@ using System.Linq;
 using System.Windows.Forms;
 using KW.WinFormsUI.Docking;
 using System.Drawing;
+using System.IO;
+using System.Collections;
 
 //Note: editable columns - count, cost, tags, foil
 
@@ -57,6 +59,38 @@ namespace MTG_Librarian
             InitUIWorker.RunWorkerAsync();
         }
 
+        public void UpdateStatusBarTotals(IList cards)
+        {
+            int cardCount = 0;
+            double costTotal = 0;
+            double priceTotal = 0;
+            foreach (var card in cards)
+            {
+                if (card is FullInventoryCard inventoryCard)
+                {
+                    if (inventoryCard.Count.HasValue)
+                    {
+                        int count = inventoryCard.Count.Value;
+                        cardCount += count;
+                        if (inventoryCard.Cost.HasValue)
+                            costTotal += count * inventoryCard.Cost.Value;
+                        if (inventoryCard.tcgplayerMarketPrice.HasValue)
+                            priceTotal += count * inventoryCard.tcgplayerMarketPrice.Value;
+                    }
+                }
+            }
+
+            if (cardCount > 0)
+            {
+                mainStatusLabel.Text = $"Selected: {cardCount} cards [{costTotal}] [{priceTotal}]";
+                mainStatusLabel.Show();
+            }
+            else
+            {
+                mainStatusLabel.Text = "";
+                mainStatusLabel.Hide();
+            }
+        }
         private static void SetupImageLists()
         {
             Globals.ImageLists.SmallIconList = new ImageList() { ColorDepth = ColorDepth.Depth32Bit, ImageSize = new Size(SmallIconWidth, SmallIconHeight) };
@@ -229,5 +263,26 @@ namespace MTG_Librarian
         #endregion Misc Events
 
         #endregion Events
+
+        private void exportDeckcollectionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (Globals.Forms.DockPanel.ActiveDocument != null)
+            {
+                var targetForm = Globals.Forms.DockPanel.ActiveDocument as CollectionViewForm;
+                var targetCollection = targetForm.Collection;
+                var targetLV = targetForm.cardListView;
+                Directory.CreateDirectory("export");
+                using (StreamWriter file = new StreamWriter($"export\\{targetCollection.CollectionName}.csv"))
+                {
+                    file.WriteLine("Quantity,Name,Code,PurchasePrice,Foil,Condition,Language,PurchaseDate");
+                    foreach (var row in targetLV.Objects)
+                    {
+                        if (row is FullInventoryCard card)
+                            file.WriteLine($"{card.Count},\"{card.DisplayName}\",{card.SetCode},{(card.Cost.HasValue ? card.Cost : 0)},{(card.Foil ? 1 : 0)},0,0,{card.TimeAdded.Value.Date}");                       
+                    }
+                    
+                }
+            }
+        }
     }
 }

@@ -28,13 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.vS2015LightTheme1 = new KW.WinFormsUI.Docking.VS2015LightTheme();
             this.CheckForNewSetsWorker = new System.ComponentModel.BackgroundWorker();
             this.InitUIWorker = new System.ComponentModel.BackgroundWorker();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.dockPanel1 = new KW.WinFormsUI.Docking.DockPanel();
             this.mainMenuStrip = new System.Windows.Forms.MenuStrip();
+            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exportDeckcollectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.windowsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cardInfoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dBToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -73,6 +74,7 @@
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer1.FixedPanel = System.Windows.Forms.FixedPanel.Panel2;
             this.splitContainer1.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer1.Margin = new System.Windows.Forms.Padding(4);
             this.splitContainer1.Name = "splitContainer1";
             this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -85,8 +87,8 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.statusPanel);
-            this.splitContainer1.Size = new System.Drawing.Size(1465, 635);
-            this.splitContainer1.SplitterDistance = 551;
+            this.splitContainer1.Size = new System.Drawing.Size(1924, 782);
+            this.splitContainer1.SplitterDistance = 707;
             this.splitContainer1.SplitterWidth = 1;
             this.splitContainer1.TabIndex = 2;
             // 
@@ -102,23 +104,40 @@
             this.dockPanel1.Theme = this.vS2015LightTheme1;
             this.dockPanel1.DocumentStyle = KW.WinFormsUI.Docking.DocumentStyle.DockingWindow;
             this.dockPanel1.DoubleClickCaptionAction = KW.WinFormsUI.Docking.DockPanel.DoubleClickCaptionActionEnum.SendToBack;
-            this.dockPanel1.Location = new System.Drawing.Point(0, 24);
+            this.dockPanel1.Location = new System.Drawing.Point(0, 30);
             this.dockPanel1.Margin = new System.Windows.Forms.Padding(1);
             this.dockPanel1.Name = "dockPanel1";
             this.dockPanel1.Padding = new System.Windows.Forms.Padding(6);
             this.dockPanel1.ShowAutoHideContentOnHover = false;
-            this.dockPanel1.Size = new System.Drawing.Size(1465, 527);
+            this.dockPanel1.Size = new System.Drawing.Size(1924, 677);
             this.dockPanel1.TabIndex = 1;
             // 
             // mainMenuStrip
             // 
+            this.mainMenuStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.mainMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fileToolStripMenuItem,
             this.windowsToolStripMenuItem});
             this.mainMenuStrip.Location = new System.Drawing.Point(0, 0);
             this.mainMenuStrip.Name = "mainMenuStrip";
-            this.mainMenuStrip.Size = new System.Drawing.Size(1465, 24);
+            this.mainMenuStrip.Size = new System.Drawing.Size(1924, 30);
             this.mainMenuStrip.TabIndex = 2;
             this.mainMenuStrip.Text = "menuStrip1";
+            // 
+            // fileToolStripMenuItem
+            // 
+            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.exportDeckcollectionToolStripMenuItem});
+            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(46, 26);
+            this.fileToolStripMenuItem.Text = "File";
+            // 
+            // exportDeckcollectionToolStripMenuItem
+            // 
+            this.exportDeckcollectionToolStripMenuItem.Name = "exportDeckcollectionToolStripMenuItem";
+            this.exportDeckcollectionToolStripMenuItem.Size = new System.Drawing.Size(241, 26);
+            this.exportDeckcollectionToolStripMenuItem.Text = "Export deck/collection";
+            this.exportDeckcollectionToolStripMenuItem.Click += new System.EventHandler(this.exportDeckcollectionToolStripMenuItem_Click);
             // 
             // windowsToolStripMenuItem
             // 
@@ -128,34 +147,34 @@
             this.navigatorToolStripMenuItem,
             this.tasksToolStripMenuItem});
             this.windowsToolStripMenuItem.Name = "windowsToolStripMenuItem";
-            this.windowsToolStripMenuItem.Size = new System.Drawing.Size(68, 20);
+            this.windowsToolStripMenuItem.Size = new System.Drawing.Size(84, 26);
             this.windowsToolStripMenuItem.Text = "Windows";
             // 
             // cardInfoToolStripMenuItem
             // 
             this.cardInfoToolStripMenuItem.Name = "cardInfoToolStripMenuItem";
-            this.cardInfoToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
+            this.cardInfoToolStripMenuItem.Size = new System.Drawing.Size(158, 26);
             this.cardInfoToolStripMenuItem.Text = "Card Info";
             this.cardInfoToolStripMenuItem.Click += new System.EventHandler(this.cardInfoToolStripMenuItem_Click);
             // 
             // dBToolStripMenuItem
             // 
             this.dBToolStripMenuItem.Name = "dBToolStripMenuItem";
-            this.dBToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
+            this.dBToolStripMenuItem.Size = new System.Drawing.Size(158, 26);
             this.dBToolStripMenuItem.Text = "DB";
             this.dBToolStripMenuItem.Click += new System.EventHandler(this.dBToolStripMenuItem_Click);
             // 
             // navigatorToolStripMenuItem
             // 
             this.navigatorToolStripMenuItem.Name = "navigatorToolStripMenuItem";
-            this.navigatorToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
+            this.navigatorToolStripMenuItem.Size = new System.Drawing.Size(158, 26);
             this.navigatorToolStripMenuItem.Text = "Navigator";
             this.navigatorToolStripMenuItem.Click += new System.EventHandler(this.navigatorToolStripMenuItem_Click);
             // 
             // tasksToolStripMenuItem
             // 
             this.tasksToolStripMenuItem.Name = "tasksToolStripMenuItem";
-            this.tasksToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
+            this.tasksToolStripMenuItem.Size = new System.Drawing.Size(158, 26);
             this.tasksToolStripMenuItem.Text = "Tasks";
             this.tasksToolStripMenuItem.Click += new System.EventHandler(this.tasksToolStripMenuItem_Click);
             // 
@@ -166,8 +185,9 @@
             this.statusPanel.Controls.Add(this.mainPanel);
             this.statusPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.statusPanel.Location = new System.Drawing.Point(0, 0);
+            this.statusPanel.Margin = new System.Windows.Forms.Padding(4);
             this.statusPanel.Name = "statusPanel";
-            this.statusPanel.Size = new System.Drawing.Size(1465, 83);
+            this.statusPanel.Size = new System.Drawing.Size(1924, 74);
             this.statusPanel.TabIndex = 3;
             // 
             // panel1
@@ -176,17 +196,19 @@
             this.panel1.Controls.Add(this.statusBarActionButton);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(508, 83);
+            this.panel1.Size = new System.Drawing.Size(677, 74);
             this.panel1.TabIndex = 2;
             // 
             // mainStatusLabel
             // 
             this.mainStatusLabel.AutoSize = true;
             this.mainStatusLabel.ForeColor = System.Drawing.Color.White;
-            this.mainStatusLabel.Location = new System.Drawing.Point(12, 9);
+            this.mainStatusLabel.Location = new System.Drawing.Point(16, 11);
+            this.mainStatusLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.mainStatusLabel.Name = "mainStatusLabel";
-            this.mainStatusLabel.Size = new System.Drawing.Size(35, 13);
+            this.mainStatusLabel.Size = new System.Drawing.Size(44, 16);
             this.mainStatusLabel.TabIndex = 0;
             this.mainStatusLabel.Text = "label1";
             this.mainStatusLabel.Visible = false;
@@ -199,9 +221,10 @@
             this.statusBarActionButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.statusBarActionButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.statusBarActionButton.ForeColor = System.Drawing.Color.White;
-            this.statusBarActionButton.Location = new System.Drawing.Point(53, 3);
+            this.statusBarActionButton.Location = new System.Drawing.Point(71, 4);
+            this.statusBarActionButton.Margin = new System.Windows.Forms.Padding(4);
             this.statusBarActionButton.Name = "statusBarActionButton";
-            this.statusBarActionButton.Size = new System.Drawing.Size(154, 23);
+            this.statusBarActionButton.Size = new System.Drawing.Size(203, 27);
             this.statusBarActionButton.TabIndex = 1;
             this.statusBarActionButton.Text = "[ Click here to update library ]";
             this.statusBarActionButton.UseVisualStyleBackColor = true;
@@ -213,9 +236,10 @@
             this.mainPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.mainPanel.Controls.Add(this.TasksProgressBar);
             this.mainPanel.Controls.Add(this.TasksLabel);
-            this.mainPanel.Location = new System.Drawing.Point(831, 58);
+            this.mainPanel.Location = new System.Drawing.Point(1079, 43);
+            this.mainPanel.Margin = new System.Windows.Forms.Padding(4);
             this.mainPanel.Name = "mainPanel";
-            this.mainPanel.Size = new System.Drawing.Size(631, 25);
+            this.mainPanel.Size = new System.Drawing.Size(841, 31);
             this.mainPanel.TabIndex = 0;
             // 
             // TasksProgressBar
@@ -224,30 +248,33 @@
             this.TasksProgressBar.BlankBarColor = System.Drawing.Color.DodgerBlue;
             this.TasksProgressBar.BorderColor = System.Drawing.Color.White;
             this.TasksProgressBar.CurrentBlocks = 3;
-            this.TasksProgressBar.Location = new System.Drawing.Point(522, 11);
+            this.TasksProgressBar.Location = new System.Drawing.Point(696, 14);
+            this.TasksProgressBar.Margin = new System.Windows.Forms.Padding(5);
             this.TasksProgressBar.MaxBlocks = 0;
             this.TasksProgressBar.Name = "TasksProgressBar";
             this.TasksProgressBar.Progress = 0;
-            this.TasksProgressBar.Size = new System.Drawing.Size(100, 7);
+            this.TasksProgressBar.Size = new System.Drawing.Size(133, 9);
             this.TasksProgressBar.TabIndex = 1;
             // 
             // TasksLabel
             // 
             this.TasksLabel.ForeColor = System.Drawing.Color.White;
-            this.TasksLabel.Location = new System.Drawing.Point(197, 7);
+            this.TasksLabel.Location = new System.Drawing.Point(263, 9);
+            this.TasksLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.TasksLabel.Name = "TasksLabel";
-            this.TasksLabel.Size = new System.Drawing.Size(319, 13);
+            this.TasksLabel.Size = new System.Drawing.Size(425, 16);
             this.TasksLabel.TabIndex = 0;
             this.TasksLabel.Text = "No active tasks";
             this.TasksLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1465, 635);
+            this.ClientSize = new System.Drawing.Size(1924, 782);
             this.Controls.Add(this.splitContainer1);
             this.MainMenuStrip = this.mainMenuStrip;
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "MainForm";
             this.Text = "MTG Librarian";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
@@ -288,6 +315,8 @@
         private System.Windows.Forms.Button statusBarActionButton;
         private System.Windows.Forms.Label mainStatusLabel;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem exportDeckcollectionToolStripMenuItem;
     }
 }
 
