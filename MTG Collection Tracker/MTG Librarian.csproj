@@ -612,6 +612,9 @@
     <Content Include="Icons\BG_16.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Icons\BP_16.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Icons\BR_16.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -627,6 +630,12 @@
     <Content Include="Icons\C_20.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Icons\E_16.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Icons\GP_16.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Icons\GU_16.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -639,7 +648,13 @@
     <Content Include="Icons\G_20.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Icons\Q_16.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Icons\RG_16.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Icons\RP_16.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Icons\RW_16.png">
@@ -651,10 +666,19 @@
     <Content Include="Icons\R_20.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Icons\S_16.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Icons\T_16.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Icons\U20_2.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Icons\UB_16.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Icons\UP_16.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Icons\UR_16.png">
@@ -667,6 +691,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Icons\WB_16.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Icons\WP_16.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Icons\WU_16.png">
@@ -684,10 +711,25 @@
     <Content Include="Icons\X_20.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="mtgl icon.ico" />
-    <None Include="Resources\mtgl icon.ico" />
-    <None Include="Resources\mtgl icon1.png" />
-    <None Include="Resources\mtgl icon.png" />
+    <None Include="Resources\WP 16.png" />
+    <None Include="Resources\UP 16.png" />
+    <None Include="Resources\T 16.png" />
+    <None Include="Resources\S 16.png" />
+    <None Include="Resources\RP 16.png" />
+    <None Include="Resources\Q 16.png" />
+    <None Include="Resources\GP 16.png" />
+    <None Include="Resources\E 16.png" />
+    <None Include="Resources\CW 16.png" />
+    <None Include="Resources\CU 16.png" />
+    <None Include="Resources\CR 16.png" />
+    <None Include="Resources\CG 16.png" />
+    <None Include="Resources\CB 16.png" />
+    <None Include="Resources\BP 16.png" />
+    <None Include="Resources\2W 16.png" />
+    <None Include="Resources\2U 16.png" />
+    <None Include="Resources\2R 16.png" />
+    <None Include="Resources\2G 16.png" />
+    <None Include="Resources\2B 16.png" />
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\packages\codecracker.CSharp.1.1.0\analyzers\dotnet\cs\CodeCracker.CSharp.dll" />

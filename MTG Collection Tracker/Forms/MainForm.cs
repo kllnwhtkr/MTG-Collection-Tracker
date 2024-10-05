@@ -149,6 +149,15 @@ namespace MTG_Librarian
             Globals.ImageLists.SymbolIcons16.Images.Add("{2/B}", Properties.Resources.C2B_16);
             Globals.ImageLists.SymbolIcons16.Images.Add("{2/R}", Properties.Resources.C2R_16);
             Globals.ImageLists.SymbolIcons16.Images.Add("{2/G}", Properties.Resources.C2G_16);
+            Globals.ImageLists.SymbolIcons16.Images.Add("{W/P}", Properties.Resources.WP_16);
+            Globals.ImageLists.SymbolIcons16.Images.Add("{U/P}", Properties.Resources.UP_16);
+            Globals.ImageLists.SymbolIcons16.Images.Add("{B/P}", Properties.Resources.BP_16);
+            Globals.ImageLists.SymbolIcons16.Images.Add("{R/P}", Properties.Resources.RP_16);
+            Globals.ImageLists.SymbolIcons16.Images.Add("{G/P}", Properties.Resources.GP_16);
+            Globals.ImageLists.SymbolIcons16.Images.Add("{S}", Properties.Resources.S_16);
+            Globals.ImageLists.SymbolIcons16.Images.Add("{T}", Properties.Resources.T_16);
+            Globals.ImageLists.SymbolIcons16.Images.Add("{Q}", Properties.Resources.Q_16);
+            Globals.ImageLists.SymbolIcons16.Images.Add("{E}", Properties.Resources.E_16);
 
             #endregion Add mana icons
         }
