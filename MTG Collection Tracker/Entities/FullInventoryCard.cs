@@ -33,7 +33,28 @@ namespace MTG_Librarian
         }
 
         private string _sortableTimeAdded;
-
+        [NotMapped]
+        public double? Delta 
+        { 
+            get 
+            { 
+                if (tcgplayerMarketPrice.HasValue && Cost.HasValue)
+                    return tcgplayerMarketPrice.Value - Cost.Value;
+                else
+                    return null;
+            } 
+        }
+        [NotMapped]
+        public double? X 
+        { 
+            get
+            {
+                if (tcgplayerMarketPrice.HasValue && Cost.HasValue && Cost.Value != 0.0)
+                    return tcgplayerMarketPrice.Value / Cost.Value;
+                else
+                    return null;
+            }
+        }
         [NotMapped]
         public string ImageKey => $"{Edition}: {rarity}";
 
