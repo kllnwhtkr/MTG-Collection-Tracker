@@ -164,7 +164,7 @@ namespace MTG_Librarian
 
         public void AddSetIcon(string SetCode)
         {
-            using (var context = new MyDbContext())
+            using (var context = new CardsDbContext())
             {
                 var set = (from s in context.Sets
                            where s.Code == SetCode
@@ -190,7 +190,7 @@ namespace MTG_Librarian
 
         private void AddSetIcons()
         {
-            using (var context = new MyDbContext())
+            using (var context = new CardsDbContext())
             {
                 var sets = from s in context.Sets
                            select s;

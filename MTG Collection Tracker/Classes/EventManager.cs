@@ -69,7 +69,7 @@ namespace MTG_Librarian
                 Globals.Forms.MainForm.BeginInvoke(new PricesFetchedDelegate(PricesFetched), sender, e);
             else
             {
-                using (var context = new MyDbContext())
+                using (var context = new CardsDbContext())
                 {
                     MagicCard dbMatch;
                     foreach (var price in e.Prices)

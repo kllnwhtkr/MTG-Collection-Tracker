@@ -13,7 +13,7 @@ namespace MTG_Librarian
         {
             CollectionViewForm document = null;
             CardCollection collection;
-            using (var context = new MyDbContext())
+            using (var context = new CardsDbContext())
             {
                 collection = (from c in context.Collections
                               where c.Id == id
@@ -38,7 +38,7 @@ namespace MTG_Librarian
             return document;
         }
 
-        public static InventoryCard AddMagicCardToCollection(MyDbContext context, MagicCard magicCard, CardCollection collection, int insertionIndex = 0)
+        public static InventoryCard AddMagicCardToCollection(CardsDbContext context, MagicCard magicCard, CardCollection collection, int insertionIndex = 0)
         {
             var inventoryCard = new InventoryCard
             {
@@ -62,7 +62,7 @@ namespace MTG_Librarian
         public static void AddMagicCardsToCollection(List<OLVCardItem> cards, CardCollection collection)
         {
             var setItems = new Dictionary<string, OLVSetItem>();
-            using (MyDbContext context = new MyDbContext())
+            using (CardsDbContext context = new CardsDbContext())
             {
                 var cardsAdded = new List<InventoryCard>();
                 int insertionIndex = 0;
@@ -120,7 +120,7 @@ namespace MTG_Librarian
             var cardsList = new List<FullInventoryCard>();
             try
             {
-                using (var context = new MyDbContext())
+                using (var context = new CardsDbContext())
                 {
                     foreach (FullInventoryCard fullInventoryCard in fullInventoryCards)
                     {
@@ -145,7 +145,7 @@ namespace MTG_Librarian
 
         public static void CountInventory()
         {
-            using (var context = new MyDbContext())
+            using (var context = new CardsDbContext())
             {
                 var inventoryCards = from c in context.Library
                                      select c;
@@ -159,7 +159,7 @@ namespace MTG_Librarian
             }
         }
 
-        private static void UpdateCardsInDB(MyDbContext context, ArrayList items)
+        private static void UpdateCardsInDB(CardsDbContext context, ArrayList items)
         {
             foreach (FullInventoryCard card in items)
             {
@@ -196,7 +196,7 @@ namespace MTG_Librarian
             }
         }
 
-        private static MagicCard UpdateCopiesOwned(MyDbContext context, FullInventoryCard card)
+        private static MagicCard UpdateCopiesOwned(CardsDbContext context, FullInventoryCard card)
         {
             MagicCard magicCard = null;
             var allCopiesSum = context.LibraryView.Where(x => x.uuid == card.uuid && !x.Virtual).Sum(x => x.Count);
@@ -209,7 +209,7 @@ namespace MTG_Librarian
         public static void UpdateCards(CardsUpdatedEventArgs e)
         {
             var setItems = new Dictionary<string, OLVSetItem>();
-            using (MyDbContext context = new MyDbContext())
+            using (CardsDbContext context = new CardsDbContext())
             {
                 try
                 {

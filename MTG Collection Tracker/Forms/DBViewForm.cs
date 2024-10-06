@@ -183,7 +183,7 @@ namespace MTG_Librarian
                 setListView.RemoveObject(existingSet);
                 cardListView.RemoveObjects(existingCards);
             }
-            using (var context = new MyDbContext())
+            using (var context = new CardsDbContext())
             {
                 var dbSet = (from s in context.Sets
                              where s.Code == SetCode
@@ -225,7 +225,7 @@ namespace MTG_Librarian
             renderer.IsShowLines = false;
             renderer.UseTriangles = true;
             sets = new Dictionary<string, OLVSetItem>();
-            using (var context = new MyDbContext())
+            using (var context = new CardsDbContext())
             {
                 var dbSets = from s in context.Sets
                              orderby s.Name

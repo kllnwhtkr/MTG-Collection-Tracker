@@ -34,7 +34,7 @@ namespace MTG_Librarian
         public bool     Virtual { get; set; }
     }
 
-    public class MyDbContext : DbContext
+    public class CardsDbContext : DbContext
     {
         #region DbSet
         public DbSet<MagicCard> Catalog { get; set; }

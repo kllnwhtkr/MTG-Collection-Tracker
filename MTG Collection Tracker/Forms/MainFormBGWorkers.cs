@@ -95,7 +95,7 @@ namespace MTG_Librarian
         {
             var sets = GetMTGJSONSets();
             sets.RemoveAll(x => x.Code == "ps11"); // redundant set
-            using (var context = new MyDbContext())
+            using (var context = new CardsDbContext())
             {
                 var DBSets = from s in context.Sets
                              select s;

@@ -63,7 +63,7 @@ namespace MTG_Librarian
                     card.Edition = CardSet.Name;
                 }
                 (CardSet.MythicRareIcon, CardSet.RareIcon, CardSet.UncommonIcon, CardSet.CommonIcon) = (mythicIcon, rareIcon, uncommonIcon, commonIcon);
-                using (var context = new MyDbContext())
+                using (var context = new CardsDbContext())
                 {
                     context.Upsert(CardSet);
                     foreach (var card in CardSet.Cards)

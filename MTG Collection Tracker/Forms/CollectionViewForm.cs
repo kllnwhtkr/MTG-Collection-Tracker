@@ -194,7 +194,7 @@ namespace MTG_Librarian
         {
             if (Collection != null)
             {
-                using (MyDbContext context = new MyDbContext())
+                using (CardsDbContext context = new CardsDbContext())
                 {
                     var items = from c in context.LibraryView
                                 where c.CollectionId == Collection.Id
@@ -596,7 +596,7 @@ namespace MTG_Librarian
 
                 try
                 {
-                    using (var context = new MyDbContext())
+                    using (var context = new CardsDbContext())
                     {
                         context.Update(card1);
                         context.Add(card2);
@@ -633,7 +633,7 @@ namespace MTG_Librarian
                 double avgCost = Math.Round(selectedCards.Sum(x => x.Count * x.Cost).Value / totalCount, 2);
                 firstCard.Cost = avgCost;
                 firstCard.Count = totalCount;
-                using (var context = new MyDbContext())
+                using (var context = new CardsDbContext())
                 {
                     context.Update(firstCard.InventoryCard);
                     foreach (var selectedCard in selectedCards)

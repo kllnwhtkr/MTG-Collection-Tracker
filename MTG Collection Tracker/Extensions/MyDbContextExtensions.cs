@@ -5,7 +5,7 @@ namespace MTG_Librarian
 {
     public static class MyDbContextExtensions
     {
-        public static void Upsert(this MyDbContext context, CardSet set)
+        public static void Upsert(this CardsDbContext context, CardSet set)
         {
             var existing = context.Sets.AsNoTracking().FirstOrDefault(x => x.Name == set.Name);
             if (existing == null) // new set
@@ -16,7 +16,7 @@ namespace MTG_Librarian
             }
         }
 
-        public static void Upsert(this MyDbContext context, MagicCard card)
+        public static void Upsert(this CardsDbContext context, MagicCard card)
         {
             if (card.originalText == null)
                 card.originalText = "";
