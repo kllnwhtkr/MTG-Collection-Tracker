@@ -70,13 +70,13 @@ namespace MTG_Librarian
         public CardImagesDbContext(string Edition)
         {
             this.Edition = Edition.SanitizeFilename();
-            var di = new DirectoryInfo($"Card Images/");
-            if (!di.Exists) di.Create();
-            string FileName = $"Card Images/{this.Edition}.db";
-            var fi = new FileInfo(FileName);
-            if (!fi.Exists)
+            var dir = new DirectoryInfo($"Card Images/");
+            if (!dir.Exists) dir.Create();
+            string fileName = $"Card Images/{this.Edition}.db";
+            var file = new FileInfo(fileName);
+            if (!file.Exists)
             {
-                using (SqliteConnection conn = new SqliteConnection($"Data Source={FileName}"))
+                using (SqliteConnection conn = new SqliteConnection($"Data Source={fileName}"))
                 using (SqliteCommand createDB = new SqliteCommand("CREATE TABLE CardImages (uuid TEXT PRIMARY KEY, MVid INTEGER, CardImageBytes BLOB); ", conn))
                 {
                     conn.Open();
