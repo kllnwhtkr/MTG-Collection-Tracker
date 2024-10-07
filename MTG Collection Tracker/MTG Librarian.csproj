@@ -381,7 +381,6 @@
     <Compile Include="Forms\MainFormBGWorkers.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Migration.cs" />
     <Compile Include="Extensions\ObjectExtensions.cs" />
     <Compile Include="Classes\OLVItemClasses.cs" />
     <Compile Include="Extensions\PredicateExtensions.cs" />
